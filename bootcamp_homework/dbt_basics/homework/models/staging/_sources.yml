@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: bootcamp
+    database: dataexpert_student
+    schema: bootcamp
+    tables:
+      - name: raw_customers
+      - name: raw_customer_feedbacks
+      - name: raw_haunted_houses
+      - name: raw_haunted_house_tickets

@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: fact_visits
+    description: Fact table containing haunted house ticket purchases and customer feedback.
+    columns:
+      - name: ticket_id
+        description: Unique identifier for each ticket.
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Identifier for the customer who purchased the ticket.
+        tests:
+          - not_null
+
+      - name: haunted_house_id
+        description: Identifier for the haunted house visited.
+        tests:
+          - not_null
+
+      - name: purchase_date
+        description: Date when the ticket was purchased.
+        tests:
+          - not_null
+
+      - name: visit_date
+        description: Date when the customer visited the haunted house.
+
+      - name: ticket_type
+        description: Type of ticket purchased (e.g., VIP, General Admission, etc.).
+
+      - name: ticket_price
+        description: Price of the ticket in USD.
+        tests:
+          - not_null
+          - is_positive # Ensures price is > 0
+
+      - name: rating
+        description: Customer rating for the haunted house experience (1-5 scale).
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+              config:
+                where: "rating IS NOT NULL"
+
+      - name: comments
+        description: Customer feedback comments (optional).

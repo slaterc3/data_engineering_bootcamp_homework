@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: stg_haunted_house_tickets
+    description: stage table for HH tickets
+    columns:
+      - name: ticket_id
+        description: ticket identifier, PK
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: customer id, FK
+        tests:
+          - not_null
+      - name: haunted_house_id
+        description: HH id, FK
+        tests:
+          - not_null
+      - name: purchase_date
+        description: when ticket bought

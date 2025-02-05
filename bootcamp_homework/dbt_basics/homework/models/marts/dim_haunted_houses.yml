@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_haunted_houses
+    description: Dimension table for haunted houses, including size conversions.
+    columns:
+      - name: haunted_house_id
+        description: Primary key for the haunted house.
+        tests:
+          - unique
+          - not_null
+
+      - name: house_name
+        description: Name of the haunted house.
+
+      - name: park_area
+        description: The area of the theme park where the haunted house is located.
+
+      - name: theme
+        description: The theme of the haunted house.
+
+      - name: fear_level
+        description: Fear rating of the haunted house on a scale of 1-10.
+
+      - name: house_size_in_ft2
+        description: Size of the haunted house in square feet.
+
+      - name: house_size_in_m2
+        description: Size of the haunted house in square meters, converted from feet.

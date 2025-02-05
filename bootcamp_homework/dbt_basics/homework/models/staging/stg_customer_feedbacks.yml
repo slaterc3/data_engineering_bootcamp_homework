@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: stg_customer_feedbacks
+    description: Staging table for customer feedbacks.
+    columns:
+      - name: feedback_id
+        description: Primary key for feedback.
+        tests:
+          - unique
+          - not_null
+
+      - name: ticket_id
+        description: Foreign key linking to tickets.
+        tests:
+          - not_null
+
+      - name: rating
+        description: Ratings from customers, scale 1-5.
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+
+      - name: comments
+        description: Customer comments (optional).

@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: stg_haunted_houses
+    description: stage table for stg_customer_feedbacks feedback
+    columns:
+      - name: haunted_house_id
+        description: PK for HHs
+        tests:
+          - unique
+          - not_null
+      - name: house_name
+        description: name of HH
+        tests:
+          - not_null
+      - name: park_area
+        description: description of park area
+      - name: theme
+        description: haunted house theme
+      - name: fear_level
+        description: how scary HH is on scale of 1 to 5
+        tests:
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+      - name: house_size
+        description: sq meter size of haunted house
+        tests:
+          - is_positive

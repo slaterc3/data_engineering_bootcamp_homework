@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: stg_haunted_customers
+    description: stage table for customers
+    columns:
+      - name: customer_id
+        description: PK for table
+        tests:
+          - unique
+          - not_null
+      - name: age
+        description: age of customers, gt 0
+        tests:
+          - not_null
+          - is_positive
+      - name: gender
+        description: gender of customer
+        tests:
+          - accepted_values:
+              values: ["Male", "Female", "Other"]
+          - not_null:
+              config:
+                where: "gender IS NOT NULL"
+      - name: email
+        description: email of customer

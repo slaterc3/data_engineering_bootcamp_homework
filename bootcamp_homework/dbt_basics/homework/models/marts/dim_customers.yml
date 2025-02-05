@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: Dimension table for haunted house customers, including email validation.
+    columns:
+      - name: customer_id
+        description: Primary key for customers.
+        tests:
+          - unique
+          - not_null
+
+      - name: age
+        description: Age of the customer.
+        tests:
+          - not_null
+          - is_positive
+
+      - name: gender
+        description: Gender of the customer (optional).
+        tests:
+          - accepted_values:
+              values: ["Male", "Female", "Other"]
+              config:
+                where: "gender IS NOT NULL"
+
+      - name: email
+        description: Customer email address.
+
+      - name: is_valid_email_address
+        description: Boolean flag indicating if the email domain is valid.
+        tests:
+          - not_null
