@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: audit_fact_visits
+    description: >
+      This model provides detailed information about customer visits to haunted houses,
+      including ticket purchase and visit details, ticket type and price,
+      and customer feedback in the form of ratings and comments.
+
+    columns:
+      - name: ticket_id
+        description: "Unique identifier for each haunted house visit ticket."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: "Unique identifier for each customer who purchased the ticket."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_haunted_customers')
+              field: customer_id
+
+      - name: haunted_house_id
+        description: "Unique identifier for the haunted house visited."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_haunted_houses')
+              field: haunted_house_id
+
+      - name: purchase_date
+        description: "Date when the ticket was purchased."
+
+      - name: visit_date
+        description: "Date when the haunted house was visited."
+
+      - name: ticket_type
+        description: "Type of the ticket (e.g., regular, VIP, group)."
+
+      - name: ticket_price
+        description: "Price of the ticket for the haunted house visit."
+
+      - name: rating
+        description: "Customer's rating for the haunted house visit on a scale of 1 to 5."
+
+      - name: comments
+        description: "Customer's feedback comments about the haunted house visit."
